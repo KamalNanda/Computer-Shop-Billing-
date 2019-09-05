@@ -1,16 +1,20 @@
-#include <iostream.h>
+#include <iostream>
 #include<conio.h>
-#include<fstream.h>
+#include<fstream>
 #include<process.h>
 #include<string.h>
+using namespace std;
 int ch,itemcount=0;
-char username[20] , password[20];
+char username[20] , password[20],cust_name[20] ,cust_email[30];
+
 long int total=0;
+long long int cust_phone;
 ofstream filout;
 void ask();
 void subtotal(long int price);
 void login();
 void menu();
+void customer();
 void processor();
 void motherboard();
 void ram();
@@ -18,10 +22,11 @@ void hdd();
 void gpu();
 void bill();
 int main()
-{   clrscr();
+{   
     filout.open("file.txt",ios::out);
     cout<<"Welcome to COMPUTER SHOP!!! \n";
     login();
+    customer();
     menu();
     filout.close();
     return 0;
@@ -45,12 +50,23 @@ void login()
 
     cout<<"Enter Username - ";
     cin>>username;
-    filout<<" Username - "<<username;
+    
     cout<<"Enter Password - ";
     cin>>password;
 }
+void customer()
+{
+	cout<<"\nEnter Customer's name - ";
+	cin>>cust_name;
+	cout<<"Enter Customer's phone number - ";
+	cin>>cust_phone;
+	cout<<"Enter Customer's email ID - ";
+	cin>>cust_email;
+}
 void menu()
-{   cout<<"\nWhat do you want to buy ? - ";
+{   	
+	
+	cout<<"\nWhat do you want to buy ? - ";
     cout<<"\n1. Processor ";
     cout<<"\n2. Motherboard ";
     cout<<"\n3. Ram ";
@@ -253,15 +269,20 @@ void gpu()
 void bill()
 { char pass[20];
   int res;
-  cout<<"Enter your Password - ";
+  cout<<"Enter admin's Password - ";
   cin>>pass;
   res = strcmp(password, pass); 
   if(res==0)
  {
-  cout<<"\nName of the customer - "<<username;
+  cout<<"\nName of the customer - "<<cust_name;
+  cout<<"\nPhone number of the customer - "<<cust_phone;
+  cout<<"\nEmail of the customer - "<<cust_email;
   cout<<"\nTotal number of items brought - "<<itemcount;
   cout<<"\nTotal money to be paid - "<<total;
-
+  
+  filout<<"\nName of the customer - "<<cust_name;
+  filout<<"\nPhone number of the customer - "<<cust_phone;
+  filout<<"\nEmail of the customer - "<<cust_email;
   filout<<"\n Total number of items brought - "<<itemcount;
   filout<<"\n Total money to be paid - "<<total;
  }
