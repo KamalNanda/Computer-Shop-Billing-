@@ -5,7 +5,7 @@
 #include<string.h>
 using namespace std;
 int ch,itemcount=0;
-char username[20] , password[20],cust_name[20] ,cust_email[30];
+char username[20] , password[20],cust_name[20] ,cust_email[30], cust_address[80];
 
 long int total=0;
 long long int cust_phone;
@@ -269,7 +269,9 @@ void gpu()
 void bill()
 { char pass[20];
   int res;
-  cout<<"Enter admin's Password - ";
+  cout<<"\nEnter delivery address(with-in 80 characters) - ";
+  cin>>cust_address;
+  cout<<"\nEnter admin's Password - ";
   cin>>pass;
   res = strcmp(password, pass); 
   if(res==0)
@@ -277,6 +279,7 @@ void bill()
   cout<<"\nName of the customer - "<<cust_name;
   cout<<"\nPhone number of the customer - "<<cust_phone;
   cout<<"\nEmail of the customer - "<<cust_email;
+  cout<<"\nDelivery address - "<<cust_address;
   cout<<"\nTotal number of items brought - "<<itemcount;
   cout<<"\nTotal money to be paid - "<<total;
   
