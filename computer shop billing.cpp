@@ -3,6 +3,7 @@
 #include<fstream>
 #include<process.h>
 #include<string.h>
+#include <ctime>
 using namespace std;
 int ch,itemcount=0;
 char username[20] , password[20],cust_name[20] ,cust_email[30], cust_address[80];
@@ -267,7 +268,8 @@ void gpu()
   }
 }
 void bill()
-{ char pass[20];
+{ char pass[20]; 
+  time_t timestamp;
   int res;
   cout<<"\nEnter delivery address(with-in 80 characters) - ";
   cin>>cust_address;
@@ -276,13 +278,14 @@ void bill()
   res = strcmp(password, pass); 
   if(res==0)
  {
+  time(&timestamp);
   cout<<"\nName of the customer - "<<cust_name;
   cout<<"\nPhone number of the customer - "<<cust_phone;
   cout<<"\nEmail of the customer - "<<cust_email;
   cout<<"\nDelivery address - "<<cust_address;
   cout<<"\nTotal number of items brought - "<<itemcount;
   cout<<"\nTotal money to be paid - "<<total;
-  
+  cout<<"\nBilling time - "<< ctime(&timestamp);
   filout<<"\nName of the customer - "<<cust_name;
   filout<<"\nPhone number of the customer - "<<cust_phone;
   filout<<"\nEmail of the customer - "<<cust_email;
